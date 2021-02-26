@@ -6,7 +6,7 @@
 
     <groupId>github.xxcdd</groupId>
     <artifactId>burp-requests</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>pretty_code_with_ssl_error_ignore</version>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/net.portswigger.burp.extender/burp-extender-api -->
