@@ -21,5 +21,9 @@ burp0_headers = {
     "Accept-Encoding": "gzip, deflate",
     "Accept-Language": "zh-CN,zh;q=0.9"
 }
+burp0_data = {
+    "test": "test"
+}
 resp = requests.get(burp0_url, headers=burp0_headers, proxies=proxies, verify=False)
+resp = requests.post(burp0_url, headers=burp0_headers, data=burp0_data, proxies=proxies, verify=False)
 ```
