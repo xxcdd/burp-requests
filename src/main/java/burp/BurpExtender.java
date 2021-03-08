@@ -172,7 +172,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory, Clipboa
         }
         py.append("data = ");
         if (contentType == IRequestInfo.CONTENT_TYPE_URL_ENCODED) {
-            py.append('{');
+            py.append("{\n    ");
             boolean firstKey = true;
             int keyStart = bo, keyEnd = -1;
             for (int pos = bo; pos < req.length; pos++) {
@@ -180,7 +180,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory, Clipboa
                 if (keyEnd == -1) {
                     if (b == (byte)'=') {
                         if (pos == req.length - 1) {
-                            if (!firstKey) py.append(", ");
+                            if (!firstKey) py.append(",\n    ");
                             escapeUrlEncodedBytes(req, py, keyStart, pos);
                             py.append(": ''");
                         } else {
@@ -188,7 +188,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory, Clipboa
                         }
                     }
                 } else if (b == (byte)'&' || pos == req.length - 1) {
-                    if (firstKey) firstKey = false; else py.append(", ");
+                    if (firstKey) firstKey = false; else py.append(",\n    ");
                     escapeUrlEncodedBytes(req, py, keyStart, keyEnd);
                     py.append(": ");
                     escapeUrlEncodedBytes(req, py, keyEnd + 1,
@@ -197,7 +197,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory, Clipboa
                     keyStart = pos + 1;
                 }
             }
-            py.append('}');
+            py.append("\n}");
         } else {
             escapeBytes(req, py, bo, req.length);
         }
